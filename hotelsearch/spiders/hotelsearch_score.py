@@ -18,7 +18,6 @@ class HotelSearchSpider(scrapy.Spider):
     
 
     def parse(self, response):
-        self.sayi=self.sayi+1
         for href in response.css('.listing_title a::attr(href)'):
             url = response.urljoin(href.extract())
             yield scrapy.Request(url, callback=self.parse_score)
